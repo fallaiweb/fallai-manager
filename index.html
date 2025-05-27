@@ -1,27 +1,34 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Fall AI Manager</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fall AI Server Manager</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" />
 </head>
 <body>
-  <div class="container">
-    <h1 class="glow">Fall AI Manager</h1>
-    
-    <div id="login-area">
-      <button id="login-btn" class="btn neon">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" class="discord-icon"> Mit Discord einloggen
+  <div class="main-container">
+    <div class="header">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Logo" class="logo" />
+      <h1 class="title">Fall AI Server Manager</h1>
+    </div>
+
+    <div id="login-area" class="card center">
+      <p>Connect your Discord to manage servers with Fall AI.</p>
+      <button id="login-btn" class="btn login-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" class="icon" />
+        Login with Discord
       </button>
     </div>
 
-    <div id="dashboard" style="display:none;">
-      <h2>Gemeinsame Server <span class="wave">🌐</span></h2>
+    <div id="dashboard" style="display:none;" class="card">
+      <h2>Shared Servers <span class="emoji">🌐</span></h2>
       <div id="servers" class="server-list"></div>
-      <button onclick="logout()" class="btn logout">Logout</button>
+      <button onclick="logout()" class="btn logout-btn">Logout</button>
     </div>
   </div>
+
   <script src="dashboard.js"></script>
 </body>
 </html>
