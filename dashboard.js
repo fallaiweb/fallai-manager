@@ -49,33 +49,34 @@ if (token) {
 }
 
 async function main(token) {
-  // Lade User-Info
+  // Lade User-Info (optional, falls du z.B. den User anzeigen willst)
   const user = await fetchUser(token);
 
-  // Lade Guilds
+  // Lade alle Guilds des Users
   let guilds = await fetchUserGuilds(token);
 
-  // Lade Bot-Guilds von deiner API (dein Bot muss eine Route bereitstellen, z.B. /api/botguilds)
+  // Lade alle Guilds des Bots von deiner API
   const botGuildsRes = await fetch(`${API_URL}/api/botguilds`);
   const botGuilds = await botGuildsRes.json();
 
-  // Filtere: Nur gemeinsame Guilds, wo der User Admin ist
-  const adminGuilds = guilds.filter(g =>
-    (parseInt(g.permissions) & 0x8) &&
-    botGuilds.includes(g.id)
-  );
+  // Filtere: Nur gemeinsame Guilds (egal ob Admin oder nicht)
+  const sharedGuilds = guilds.filter(g => botGuilds.includes(g.id));
 
   // Zeige Serverliste
   const serversDiv = document.getElementById('servers');
   serversDiv.innerHTML = '';
-  adminGuilds.forEach((g, i) => {
+  if (sharedGuilds.length === 0) {
+    serversDiv.innerHTML = '<p>Kein gemeinsamer Server gefunden!</p>';
+  }
+  sharedGuilds.forEach((g, i) => {
     const card = document.createElement('div');
     card.className = 'server-card';
     card.style.animationDelay = (i * 0.1) + 's';
 
     card.innerHTML = `
       <div class="server-info">
-        <img class="server-icon" src="https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
+        <img class="server-icon" src="https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png" 
+          onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
         <span class="server-name">${g.name}</span>
       </div>
       <button class="control-btn" onclick="openControl('${g.id}', '${g.name}')">Steuern</button>
@@ -84,7 +85,7 @@ async function main(token) {
   });
 }
 
-// ==== Server-Steuerung (Modal) ====
+// Beispiel für Steuerung (hier nur ein Alert, du kannst das ausbauen)
 window.openControl = function(guildId, guildName) {
-  alert(`Hier könntest du jetzt den Bot auf dem Server "${guildName}" steuern!`);
+  alert(`Hier kannst du den Bot auf dem Server "${guildName}" steuern!`);
 };
