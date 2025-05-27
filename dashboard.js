@@ -1,7 +1,7 @@
 // ==== CONFIG ====
 const CLIENT_ID = '1376180153654448180'; // <-- Deine Client-ID hier eintragen!
 const REDIRECT_URI = 'https://fallaimanager.netlify.app/'; // exakt wie im Discord Developer Portal!
-const API_URL = 'https://netlify.com'; // z.B. https://meinbotapi.de
+const API_URL = 'https://fallaimanager.netlify.app'; // z.B. https://meinbotapi.de
 
 // ==== OAUTH2 ====
 const SCOPE = 'identify guilds';
@@ -86,22 +86,39 @@ async function main(token) {
   });
 }
 
-// ==== Server-Steuerung (z.B. User kicken) ====
+// ==== Server-Steuerung (Modal) ====
 window.openControl = function(guildId, guildName) {
-  const userId = prompt(`User-ID, die du auf ${guildName} kicken willst:`);
-  if (!userId) return;
-  const reason = prompt("Grund für Kick:");
-  fetch(`${API_URL}/api/kick`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ guild_id: guildId, user_id: userId, reason })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.status === 'success') {
-      alert('User wurde gekickt!');
-    } else {
-      alert('Fehler: ' + (data.msg || 'Unbekannter Fehler'));
-    }
-  });
+  document.getElementById('modal-server-name').innerText = `Steuerung für ${guildName}`;
+  document.getElementById('kick-user-id').value = '';
+  document.getElementById('kick-reason').value = '';
+  document.getElementById('kick-result').innerText = '';
+  document.getElementById('server-control-modal').style.display = 'flex';
+
+  document.getElementById('kick-form').onsubmit = function(e) {
+    e.preventDefault();
+    const userId = document.getElementById('kick-user-id').value;
+    const reason = document.getElementById('kick-reason').value;
+    fetch(`${API_URL}/api/kick`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ guild_id: guildId, user_id: userId, reason })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 'success') {
+        document.getElementById('kick-result').innerText = 'User wurde gekickt!';
+      } else {
+        document.getElementById('kick-result').innerText = 'Fehler: ' + (data.msg || 'Unbekannter Fehler');
+      }
+    });
+  };
+};
+
+document.getElementById('close-modal').onclick = function() {
+  document.getElementById('server-control-modal').style.display = 'none';
+};
+window.onclick = function(event) {
+  if (event.target == document.getElementById('server-control-modal')) {
+    document.getElementById('server-control-modal').style.display = 'none';
+  }
 };
