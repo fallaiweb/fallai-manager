@@ -1,7 +1,7 @@
 // ==== CONFIG ====
-const CLIENT_ID = '1376180153654448180'; // <-- Deine Client-ID hier eintragen!
+const CLIENT_ID = '1376180153654448180'; // <-- Deine Discord Client-ID!
 const REDIRECT_URI = 'https://fallaimanager.netlify.app/'; // exakt wie im Discord Developer Portal!
-const API_URL = 'https://fallaimanager.netlify.app'; // z.B. https://meinbotapi.de
+const API_URL = 'http://2.58.113.163:5001'; // z.B. https://meinbotapi.onrender.com
 
 // ==== OAUTH2 ====
 const SCOPE = 'identify guilds';
