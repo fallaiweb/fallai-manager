@@ -1,7 +1,7 @@
 // ==== CONFIG ====
 const CLIENT_ID = '1376180153654448180';
 const REDIRECT_URI = window.location.origin + '/';
-const API_URL = 'http://localhost:5000/callback'; // z.B. https://meineapi.de
+const API_URL = 'https://fallaimanager.netlify.app'; // z.B. https://meineapi.de
 
 // ==== OAUTH2 ====
 const SCOPE = 'identify guilds';
