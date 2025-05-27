@@ -2,30 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fall AI Server Manager</title>
+  <title>Fall AI Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" />
 </head>
 <body>
-  <div class="main-container">
-    <div class="header">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord Logo" class="logo" />
-      <h1 class="title">Fall AI Server Manager</h1>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">Fall AI Manager</h1>
+      <div id="user-info" class="user-info" style="display: none;">
+        <img id="user-avatar" class="avatar" src="" alt="User Avatar" />
+        <span id="user-name" class="username"></span>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+      </div>
+    </header>
+
+    <div id="login-area">
+      <button id="login-btn" class="btn login-btn">Login with Discord</button>
     </div>
 
-    <div id="login-area" class="card center">
-      <p>Connect your Discord to manage servers with Fall AI.</p>
-      <button id="login-btn" class="btn login-btn">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" class="icon" />
-        Login with Discord
-      </button>
-    </div>
-
-    <div id="dashboard" style="display:none;" class="card">
-      <h2>Shared Servers <span class="emoji">🌐</span></h2>
+    <div id="dashboard" style="display: none;">
+      <h2 class="section-title">Mutual Servers</h2>
       <div id="servers" class="server-list"></div>
-      <button onclick="logout()" class="btn logout-btn">Logout</button>
     </div>
   </div>
 
