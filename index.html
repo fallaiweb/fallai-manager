@@ -13,21 +13,9 @@
       <button id="login-btn" class="btn neon">Mit Discord einloggen</button>
     </div>
     <div id="dashboard" style="display:none;">
-      <h2>Deine Server <span class="wave">🌊</span></h2>
+      <h2>Gemeinsame Server <span class="wave">🌐</span></h2>
       <div id="servers" class="server-list"></div>
       <button onclick="logout()" class="btn logout">Logout</button>
-    </div>
-    <div id="server-control-modal" class="modal" style="display:none;">
-      <div class="modal-content">
-        <span id="close-modal" class="close">&times;</span>
-        <h3 id="modal-server-name"></h3>
-        <form id="kick-form">
-          <label>User ID: <input type="text" id="kick-user-id" required></label><br>
-          <label>Grund: <input type="text" id="kick-reason"></label><br>
-          <button type="submit" class="control-btn">User kicken</button>
-        </form>
-        <div id="kick-result"></div>
-      </div>
     </div>
   </div>
   <script src="dashboard.js"></script>
