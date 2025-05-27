@@ -9,7 +9,7 @@ const DISCORD_API = 'https://discord.com/api';
 
 function getAccessTokenFromUrl() {
   const hash = window.location.hash;
-  if (hash && hash.startsWith('#access_token=MTM3NjE4MDE1MzY1NDQ0ODE4MA.GLo8EP.DOdjj79wgZwPfxHO3oDIS0OlZqFuXJi_swhi4M')) {
+  if (hash && hash.startsWith('#access_token=')) {
     const params = new URLSearchParams(hash.substr(1));
     return params.get('access_token');
   }
