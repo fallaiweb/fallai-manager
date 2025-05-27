@@ -1,6 +1,6 @@
 body {
-  background: radial-gradient(ellipse at top, #5865f2 0%, #23272a 100%);
-  color: #fff;
+  background: radial-gradient(circle at top, #5865f2 0%, #2c2f33 100%);
+  color: #ffffff;
   font-family: 'Segoe UI', Arial, sans-serif;
   margin: 0;
   min-height: 100vh;
@@ -8,28 +8,30 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .container {
-  background: rgba(30,35,60,0.96);
+  background: rgba(44, 47, 59, 0.96);
   border-radius: 20px;
-  padding: 40px 30px 30px 30px;
-  box-shadow: 0 8px 40px #0008;
-  min-width: 350px;
-  max-width: 520px;
-  width: 100%;
+  padding: 40px 30px;
+  box-shadow: 0 8px 40px #00000088;
+  width: 90%;
+  max-width: 600px;
   text-align: center;
   animation: fadein 1s;
 }
+
 @keyframes fadein {
-  from { opacity: 0; transform: scale(0.9);}
-  to { opacity: 1; transform: scale(1);}
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
+
 h1.glow {
-  font-size: 2.7em;
-  letter-spacing: 2px;
-  color: #fff;
+  font-size: 2.8em;
+  color: #ffffff;
   text-shadow: 0 0 16px #5865f2, 0 0 40px #5865f2;
   margin-bottom: 30px;
 }
+
 .btn {
   padding: 14px 32px;
   border: none;
@@ -41,29 +43,44 @@ h1.glow {
   transition: 0.2s;
   box-shadow: 0 0 16px #5865f2aa;
   margin: 10px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
+
 .btn.neon {
   animation: neon 1.5s infinite alternate;
 }
+
 @keyframes neon {
-  0% { box-shadow: 0 0 10px #5865f2, 0 0 20px #43b581;}
-  100% { box-shadow: 0 0 30px #5865f2, 0 0 40px #43b581;}
+  0% { box-shadow: 0 0 10px #5865f2, 0 0 20px #43b581; }
+  100% { box-shadow: 0 0 30px #5865f2, 0 0 40px #43b581; }
 }
+
+.discord-icon {
+  width: 24px;
+  height: 24px;
+}
+
 .btn.logout {
   background: #e74c3c;
   box-shadow: 0 0 16px #e74c3c77;
 }
+
 .btn.logout:hover {
   background: #c0392b;
 }
+
 .server-list {
   display: flex;
   flex-direction: column;
   gap: 18px;
   margin-top: 18px;
 }
+
 .server-card {
-  background: linear-gradient(90deg, #23272a 80%, #5865f2 120%);
+  background: #2f3136;
+  border-left: 6px solid #43b581;
   border-radius: 12px;
   padding: 18px;
   box-shadow: 0 2px 12px #0006;
@@ -74,14 +91,17 @@ h1.glow {
   opacity: 0;
   animation: slidein 0.6s forwards;
 }
+
 @keyframes slidein {
   to { opacity: 1; }
 }
+
 .server-info {
   display: flex;
   align-items: center;
   gap: 18px;
 }
+
 .server-icon {
   width: 54px;
   height: 54px;
@@ -91,13 +111,19 @@ h1.glow {
   border: 2px solid #43b581;
   box-shadow: 0 0 10px #43b58155;
 }
+
 .server-name {
-  font-size: 1.25em;
+  font-size: 1.2em;
   font-weight: 600;
   text-align: left;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
 .control-btn {
-  padding: 10px 18px;
+  padding: 10px 20px;
   background: #43b581;
   color: #fff;
   border: none;
@@ -107,16 +133,19 @@ h1.glow {
   box-shadow: 0 0 12px #43b58188;
   transition: 0.2s;
 }
+
 .control-btn:hover {
   background: #2ecc71;
   transform: scale(1.07);
 }
+
 .wave {
   animation: wave 1.2s infinite alternate;
   display: inline-block;
   font-size: 1.4em;
 }
+
 @keyframes wave {
-  0% { transform: rotate(-8deg);}
-  100% { transform: rotate(8deg);}
+  0% { transform: rotate(-8deg); }
+  100% { transform: rotate(8deg); }
 }
