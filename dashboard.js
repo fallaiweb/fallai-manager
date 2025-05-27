@@ -1,4 +1,4 @@
-const CLIENT_ID = '1376180153654448180'; // Ersetze mit deiner Discord Client-ID!
+const CLIENT_ID = '1376180153654448180'; // Deine Discord Client-ID
 const REDIRECT_URI = 'https://fallaimanager.netlify.app/'; // exakt wie im Discord Developer Portal!
 const API_URL = 'http://2.58.113.163:5001'; // Deine Backend-API
 
@@ -6,12 +6,10 @@ const SCOPE = 'identify guilds';
 const DISCORD_API = 'https://discord.com/api';
 
 function getAccessTokenFromUrl() {
-  const hash = window.location.hash;
-  if (hash && hash.includes('access_token=')) {
-    const params = new URLSearchParams(hash.substr(1));
-    return params.get('access_token');
-  }
-  return null;
+  // Suche nach access_token in der Hash-URL, egal an welcher Stelle!
+  const hash = window.location.hash.replace('#', '');
+  const params = new URLSearchParams(hash.replace(/&/g, '&'));
+  return params.get('access_token');
 }
 
 function loginWithDiscord() {
@@ -42,17 +40,15 @@ if (token) {
 }
 
 async function main(token) {
-  // Lade alle Guilds des Users
   let guilds = await fetchUserGuilds(token);
 
   // Lade alle Guilds des Bots von deiner API
   const botGuildsRes = await fetch(`${API_URL}/api/botguilds`);
   const botGuilds = await botGuildsRes.json();
 
-  // Filtere: Nur gemeinsame Guilds (egal ob Admin oder nicht)
+  // Nur gemeinsame Guilds (egal ob Admin)
   const sharedGuilds = guilds.filter(g => botGuilds.includes(g.id));
 
-  // Zeige Serverliste
   const serversDiv = document.getElementById('servers');
   serversDiv.innerHTML = '';
   if (sharedGuilds.length === 0) {
