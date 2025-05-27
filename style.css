@@ -117,3 +117,32 @@ h1.glow {
   0% { transform: rotate(-8deg);}
   100% { transform: rotate(8deg);}
 }
+/* Modal */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 99;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.7);
+}
+.modal-content {
+  background: #23272a;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 20px #000b;
+  min-width: 300px;
+  position: relative;
+  animation: fadein 0.4s;
+}
+.close {
+  position: absolute;
+  right: 16px; top: 10px;
+  font-size: 2em;
+  color: #fff;
+  cursor: pointer;
+}
+#kick-result {
+  margin-top: 12px;
+}
