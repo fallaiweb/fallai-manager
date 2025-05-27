@@ -1,15 +1,13 @@
-// ==== CONFIG ====
-const CLIENT_ID = '1376180153654448180'; // <-- Deine Discord Client-ID!
+const CLIENT_ID = '1376180153654448180'; // Deine Discord Client-ID
 const REDIRECT_URI = 'https://fallaimanager.netlify.app/'; // exakt wie im Discord Developer Portal!
-const API_URL = 'http://2.58.113.163:5001'; // z.B. https://meinbotapi.onrender.com
+const API_URL = 'http://2.58.113.163:5001'; // Deine Backend-API
 
-// ==== OAUTH2 ====
 const SCOPE = 'identify guilds';
 const DISCORD_API = 'https://discord.com/api';
 
 function getAccessTokenFromUrl() {
   const hash = window.location.hash;
-  if (hash && hash.startsWith('#access_token=')) {
+  if (hash && hash.includes('access_token=')) {
     const params = new URLSearchParams(hash.substr(1));
     return params.get('access_token');
   }
@@ -40,10 +38,10 @@ async function fetchUser(token) {
   return res.json();
 }
 
-// ==== UI ====
 document.getElementById('login-btn').onclick = loginWithDiscord;
 
 const token = getAccessTokenFromUrl();
+
 if (token) {
   document.getElementById('login-area').style.display = 'none';
   document.getElementById('dashboard').style.display = '';
@@ -88,37 +86,5 @@ async function main(token) {
 
 // ==== Server-Steuerung (Modal) ====
 window.openControl = function(guildId, guildName) {
-  document.getElementById('modal-server-name').innerText = `Steuerung für ${guildName}`;
-  document.getElementById('kick-user-id').value = '';
-  document.getElementById('kick-reason').value = '';
-  document.getElementById('kick-result').innerText = '';
-  document.getElementById('server-control-modal').style.display = 'flex';
-
-  document.getElementById('kick-form').onsubmit = function(e) {
-    e.preventDefault();
-    const userId = document.getElementById('kick-user-id').value;
-    const reason = document.getElementById('kick-reason').value;
-    fetch(`${API_URL}/api/kick`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ guild_id: guildId, user_id: userId, reason })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === 'success') {
-        document.getElementById('kick-result').innerText = 'User wurde gekickt!';
-      } else {
-        document.getElementById('kick-result').innerText = 'Fehler: ' + (data.msg || 'Unbekannter Fehler');
-      }
-    });
-  };
-};
-
-document.getElementById('close-modal').onclick = function() {
-  document.getElementById('server-control-modal').style.display = 'none';
-};
-window.onclick = function(event) {
-  if (event.target == document.getElementById('server-control-modal')) {
-    document.getElementById('server-control-modal').style.display = 'none';
-  }
+  alert(`Hier könntest du jetzt den Bot auf dem Server "${guildName}" steuern!`);
 };
