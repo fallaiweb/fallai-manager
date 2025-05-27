@@ -1,4 +1,4 @@
-const CLIENT_ID = '1376180153654448180'; // Deine Discord Client-ID
+const CLIENT_ID = '1376180153654448180'; // Ersetze mit deiner Discord Client-ID!
 const REDIRECT_URI = 'https://fallaimanager.netlify.app/'; // exakt wie im Discord Developer Portal!
 const API_URL = 'http://2.58.113.163:5001'; // Deine Backend-API
 
@@ -31,13 +31,6 @@ async function fetchUserGuilds(token) {
   return res.json();
 }
 
-async function fetchUser(token) {
-  const res = await fetch(`${DISCORD_API}/users/@me`, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
-  return res.json();
-}
-
 document.getElementById('login-btn').onclick = loginWithDiscord;
 
 const token = getAccessTokenFromUrl();
@@ -49,9 +42,6 @@ if (token) {
 }
 
 async function main(token) {
-  // Lade User-Info (optional, falls du z.B. den User anzeigen willst)
-  const user = await fetchUser(token);
-
   // Lade alle Guilds des Users
   let guilds = await fetchUserGuilds(token);
 
@@ -85,7 +75,7 @@ async function main(token) {
   });
 }
 
-// Beispiel für Steuerung (hier nur ein Alert, du kannst das ausbauen)
+// Beispiel für Steuerung (hier nur ein Alert)
 window.openControl = function(guildId, guildName) {
   alert(`Hier kannst du den Bot auf dem Server "${guildName}" steuern!`);
 };
